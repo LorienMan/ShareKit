@@ -190,25 +190,32 @@ static NSString *const kSHKStoredShareInfoKey=@"kSHKStoredShareInfo";
 
 + (id)shareItem:(SHKItem *)i
 {
-	if ([self canShareItem:i]) {
-        
+	return [self shareItem:i quiet:NO];
+}
+
++ (id)shareItem:(SHKItem *)i quiet:(BOOL)quiet
+{
+    if ([self canShareItem:i]) {
+
         [SHK pushOnFavorites:[self sharerId] forItem:i];
-        
+
         // Create controller and set share options
         SHKSharer *controller = [[self alloc] init];
+        controller.quiet = quiet;
         controller.item = i;
-        
+
         // share and/or show UI
         [controller share];
-        
+
         return controller;
-        
+
     } else {
-        
+
         SHKLog(@"Warning!!! You are loading sharer with incompatible item");
         return nil;
     }
 }
+
 
 - (void)loadItem:(SHKItem *)i
 {
@@ -501,6 +508,7 @@ static NSString *const kSHKStoredShareInfoKey=@"kSHKStoredShareInfo";
 										delegate:nil
 							   cancelButtonTitle:SHKLocalizedString(@"Close")
 							   otherButtonTitles:nil] show];
+            [self authDidFinish:NO];
 		}
 		return;
 	}

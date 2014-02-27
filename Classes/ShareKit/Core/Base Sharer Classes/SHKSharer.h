@@ -76,6 +76,7 @@
 
 ///Shares the item immediately
 + (id)shareItem:(SHKItem *)i;
++ (id)shareItem:(SHKItem *)i quiet:(BOOL)quiet;
 
 ///Loads item without sharing. Useful, if you wish to specify your own delegate, or otherwise setup the sharer. Do not forget to call 'share' method to actually share the item.
 - (void)loadItem:(SHKItem *)i;

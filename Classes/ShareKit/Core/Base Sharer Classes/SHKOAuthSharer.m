@@ -103,9 +103,11 @@
 		[self tokenAuthorize];
 	}
 	
-	else
-		// TODO - better error handling here
-		[self tokenRequestTicket:ticket didFailWithError:[SHK error:SHKLocalizedString(@"There was a problem requesting authorization from %@", [self sharerTitle])]];
+	else {
+        // TODO - better error handling here
+        [self tokenRequestTicket:ticket didFailWithError:[SHK error:SHKLocalizedString(@"There was a problem requesting authorization from %@", [self sharerTitle])]];
+        [self authDidFinish:NO];
+    }
 }
 
 - (void)tokenRequestTicket:(OAServiceTicket *)ticket didFailWithError:(NSError*)error

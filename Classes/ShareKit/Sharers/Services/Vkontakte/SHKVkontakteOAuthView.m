@@ -46,6 +46,7 @@
 - (void) closeView
 {
     [[SHK currentHelper] hideCurrentViewControllerAnimated:YES];
+    [(SHKVkontakte *)delegate authFailed];
 }
 
 - (void) addCloseButton

@@ -119,6 +119,7 @@
 								delegate:nil
 					   cancelButtonTitle:SHKLocalizedString(@"Close")
 					   otherButtonTitles:nil] show];
+    [self authDidFinish:NO];
 }
 
 

@@ -117,7 +117,7 @@
             OAAsynchronousDataFetcher *fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:oRequest
                                                                                                   delegate:self
                                                                                          didFinishSelector:@selector(configFetchTicket:didFinishWithData:)
-                                                                                           didFailSelector:nil];
+                                                                                           didFailSelector:@selector(configFetchTicket:didFail:)];
             [fetcher start];
         }
 }
@@ -133,6 +133,10 @@
         
         SHKLog(@"Error when fetching Twitter config:%@", ticket.body);
     }
+}
+
+- (void)configFetchTicket:(OAServiceTicket *)ticket didFail:(NSError *)error {
+    SHKLog(@"Error when fetching Twitter config:%@", ticket.body);
 }
 
 #pragma mark -

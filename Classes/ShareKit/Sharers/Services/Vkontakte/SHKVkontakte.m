@@ -253,6 +253,11 @@
 		[self share];
 }
 
+- (void) authFailed
+{
+    [self authDidFinish:NO];
+}
+
 + (void)logout
 {
     [NSHTTPCookieStorage deleteCookiesForURL:[NSURL URLWithString:@"http://api.vk.com/oauth/authorize"]];

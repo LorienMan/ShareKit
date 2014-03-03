@@ -206,7 +206,7 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
 {
     if (self.item.shareType == SHKShareTypeUserInfo) return [super validateItem];
 	
-    NSString *blog = [self.item customValueForKey:@"blog"];
+    NSString *blog = [self.item customValueForKey:@"blog"] ?: [self primaryUserBlogBase];
     BOOL isBlogFilled = ![blog isEqualToString:@""] && ![blog isEqualToString:@"-1"];
     BOOL itemValid = isBlogFilled && [super validateItem];
     
@@ -352,7 +352,7 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
 
 - (OAMutableURLRequest *)setupPostRequest {
     
-    NSString *urlString = [[NSString alloc] initWithFormat:@"http://api.tumblr.com/v2/blog/%@/post", [self.item customValueForKey:@"blog"]];
+    NSString *urlString = [[NSString alloc] initWithFormat:@"http://api.tumblr.com/v2/blog/%@/post", [self.item customValueForKey:@"blog"] ?: [self primaryUserBlogBase]];
     OAMutableURLRequest *result = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
                                                consumer:consumer // this is a consumer object already made available to us
                                                   token:accessToken // this is our accessToken already made available to us
@@ -472,6 +472,21 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
         [result addObject:blogURL.host];
     }
     return result;
+}
+
+- (NSString *)primaryUserBlogBase {
+    
+    NSDictionary *userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:kSHKTumblrUserInfo];
+    NSArray *usersBlogs = [[[userInfo objectForKey:@"response"] objectForKey:@"user"] objectForKey:@"blogs"];
+    for (NSDictionary *blog in usersBlogs) {
+        NSURL *blogURL = [NSURL URLWithString:[blog objectForKey:@"url"]];
+        NSNumber *isPrimary = [blog objectForKey:@"primary"];
+        if ([isPrimary boolValue]) {
+            return blogURL.host;
+        }
+    }
+    
+    return nil;
 }
 
 @end

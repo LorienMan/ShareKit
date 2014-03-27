@@ -111,7 +111,8 @@
 	NSURL *URL = [request URL];
 
 	if ([[URL absoluteString] isEqualToString:@"http://api.vk.com/blank.html#error=access_denied&error_reason=user_denied&error_description=User%20denied%20your%20request"]) {
-		[[SHK currentHelper] hideCurrentViewControllerAnimated:YES];
+        [(SHKVkontakte *)delegate authFailed];
+        [[SHK currentHelper] hideCurrentViewControllerAnimated:YES];
 		return NO;
 	}
 	SHKLog(@"Request: %@", [URL absoluteString]); 
@@ -148,6 +149,7 @@
 		[[SHK currentHelper] hideCurrentViewControllerAnimated:YES];
 	} else if ([vkWebView.request.URL.absoluteString rangeOfString:@"error"].location != NSNotFound) {
 		SHKLog(@"Error: %@", vkWebView.request.URL.absoluteString);
+        [(SHKVkontakte *)delegate authFailed];
 		[[SHK currentHelper] hideCurrentViewControllerAnimated:YES];
 	}
 	

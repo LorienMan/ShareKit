@@ -28,6 +28,7 @@
 #import "SHKOAuthView.h"
 #import "NSDictionary+Recursive.h"
 #import "SHKXMLResponseParser.h"
+#import "SHKSession.h"
 
 #define kSHKFlickrUserInfo @"kSHKFlickrUserInfo"
 #define USER_REMOVED_ACCESS_CODE @"98"
@@ -81,28 +82,28 @@
     
 	if (self) {
         
-		consumerKey = SHKCONFIG(flickrConsumerKey);
-		secretKey = SHKCONFIG(flickrSecretKey);
- 		authorizeCallbackURL = [NSURL URLWithString:SHKCONFIG(flickrCallbackUrl)];
+		self.consumerKey = SHKCONFIG(flickrConsumerKey);
+		self.secretKey = SHKCONFIG(flickrSecretKey);
+ 		self.authorizeCallbackURL = [NSURL URLWithString:SHKCONFIG(flickrCallbackUrl)];
 	
-	    requestURL = [NSURL URLWithString:@"http://www.flickr.com/services/oauth/request_token"];
-	    authorizeURL = [NSURL URLWithString:@"http://www.flickr.com/services/oauth/authorize"];
-	    accessURL = [NSURL URLWithString:@"http://www.flickr.com/services/oauth/access_token"];
+	    self.requestURL = [NSURL URLWithString:@"http://www.flickr.com/services/oauth/request_token"];
+	    self.authorizeURL = [NSURL URLWithString:@"http://www.flickr.com/services/oauth/authorize"];
+	    self.accessURL = [NSURL URLWithString:@"http://www.flickr.com/services/oauth/access_token"];
 		
-		signatureProvider = [[OAHMAC_SHA1SignatureProvider alloc] init];
+		self.signatureProvider = [[OAHMAC_SHA1SignatureProvider alloc] init];
 	}
 	return self;
 }
 
 - (void)tokenAccessModifyRequest:(OAMutableURLRequest *)oRequest
 {
-    [oRequest setOAuthParameterName:@"oauth_verifier" withValue:[authorizeResponseQueryVars objectForKey:@"oauth_verifier"]];
+    [oRequest setOAuthParameterName:@"oauth_verifier" withValue:[self.authorizeResponseQueryVars objectForKey:@"oauth_verifier"]];
 }
 
 //this method is overriden to add permissions (special Flickr quirk)
 - (void)tokenAuthorize
 {
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?oauth_token=%@&perms=%@", authorizeURL.absoluteString, requestToken.key, SHKCONFIG(flickrPermissions)]];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?oauth_token=%@&perms=%@", self.authorizeURL.absoluteString, self.requestToken.key, SHKCONFIG(flickrPermissions)]];
 	
 	SHKOAuthView *auth = [[SHKOAuthView alloc] initWithURL:url delegate:self];
 	[[SHK currentHelper] showViewController:auth];
@@ -199,10 +200,10 @@
 - (OAAsynchronousDataFetcher *)sendFlickrRequestMethod:(NSString *)method parameters:(NSArray *)parameters {
     
     OAMutableURLRequest *oRequest = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.flickr.com/services/rest/"]
-                                                                    consumer:consumer
-                                                                       token:accessToken
+                                                                    consumer:self.consumer
+                                                                       token:self.accessToken
                                                                        realm:nil
-                                                           signatureProvider:signatureProvider];
+                                                           signatureProvider:self.signatureProvider];
     [oRequest setHTTPMethod:@"POST"];
     
     OARequestParameter *formatParam = [[OARequestParameter alloc] initWithName:@"format" value:@"json"];
@@ -222,10 +223,10 @@
 - (OAAsynchronousDataFetcher *)uploadPhoto {
     
     OAMutableURLRequest *oRequest = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://up.flickr.com/services/upload/"]
-                                                                    consumer:consumer
-                                                                       token:accessToken
+                                                                    consumer:self.consumer
+                                                                       token:self.accessToken
                                                                        realm:nil
-                                                           signatureProvider:signatureProvider];
+                                                           signatureProvider:self.signatureProvider];
     [oRequest setHTTPMethod:@"POST"];
     
     NSMutableArray *params = [[NSMutableArray alloc] initWithCapacity:6];
@@ -243,41 +244,63 @@
     [params addObject:[[OARequestParameter alloc] initWithName:@"is_friend" value:[self.item customValueForKey:@"is_friend"]]];
     [params addObject:[[OARequestParameter alloc] initWithName:@"is_family" value:[self.item customValueForKey:@"is_family"]]];
     [oRequest setParameters:params];
-    [oRequest prepare];
     
     if (self.item.shareType == SHKShareTypeImage) {
         
-        NSData *imageData = UIImageJPEGRepresentation(self.item.image, .9);
-        [oRequest attachFileWithParameterName:@"photo"
-                                     filename:[self.item.title length] > 0 ? self.item.title:@"Photo"
-                                  contentType:@"image/jpeg"
-                                         data:imageData];
+        [self.item convertImageShareToFileShareOfType:SHKImageConversionTypeJPG quality:1];
+     }
+
+    [oRequest attachFile:self.item.file withParameterName:@"photo"];
+    
+    BOOL canUseNSURLSession = NSClassFromString(@"NSURLSession") != nil;
+    if (canUseNSURLSession) {
+        
+        __weak typeof(self) weakSelf = self;
+        self.networkSession = [SHKSession startSessionWithRequest:oRequest delegate:self completion:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            if (error.code == -999) {
+                [weakSelf sendDidCancel];
+            } else if (error) {
+                SHKLog(@"upload photo did fail with error:%@", [error description]);
+                [weakSelf sendTicket:nil didFailWithError:error];
+            } else {
+                BOOL success = [(NSHTTPURLResponse *)response statusCode] < 400;
+                [weakSelf uploadPhotoDidFinishWithData:data success:success];
+            }
+            [[SHK currentHelper] removeSharerReference:weakSelf];
+        }];
+        [[SHK currentHelper] keepSharerReference:self];
+        return nil;
+        
     } else {
         
-        [oRequest attachFileWithParameterName:@"photo"
-                                     filename:self.item.file.filename
-                                  contentType:self.item.file.mimeType
-                                         data:self.item.file.data];
+        OAAsynchronousDataFetcher *fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:oRequest
+                                                                                              delegate:self
+                                                                                     didFinishSelector:@selector(uploadPhotoTicket:didFinishWithData:)
+                                                                                       didFailSelector:@selector(sendTicket:didFailWithError:)];
+        [fetcher start];
+        return fetcher;
     }
-    
-    OAAsynchronousDataFetcher *fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:oRequest
-                                                                                          delegate:self
-                                                                                 didFinishSelector:@selector(uploadPhotoTicket:didFinishWithData:)
-                                                                                   didFailSelector:@selector(sendTicket:didFailWithError:)];
-    [fetcher start];
-    return fetcher;
 }
 
 - (void)uploadPhotoTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
     
-    if (ticket.didSucceed) {
+    [self uploadPhotoDidFinishWithData:data success:ticket.didSucceed];
+}
+
+- (void)uploadPhotoDidFinishWithData:(NSData *)data success:(BOOL)success {
+    
+    if (success) {
         
         NSDictionary *response = [SHKXMLResponseParser dictionaryFromData:data];
         NSString* photoID = [response findRecursivelyValueForKey:@"photoid"];
+        
         if (photoID) {
             
             [self sendDidFinish];
-            self.quiet = YES; //now we are going to add uploaded photo to groups. Let's not bother user with indicators...Photo is uploaded anyway.
+            
+            //now we are going to add uploaded photo to groups. Let's not bother user with indicators...Photo is uploaded anyway.
+            self.quiet = YES;
             NSArray *groupsArray = [[self.item customValueForKey:@"postgroup"] componentsSeparatedByString:@","];
             for (NSString *groupNSID in groupsArray) {
                 
@@ -285,6 +308,7 @@
                                         [[OARequestParameter alloc] initWithName:@"group_id" value:groupNSID]];
                 [self sendFlickrRequestMethod:@"flickr.groups.pools.add" parameters:parameters];
             }
+            
         } else {
             
             NSString *code = [response findRecursivelyValueForKey:@"code"];
@@ -297,7 +321,7 @@
             }
             SHKLog(@"Flickr upload ticket failed with error:%@", [[SHKXMLResponseParser dictionaryFromData:data] description]);
         }
-            
+        
     } else {
         
         [self sendShowSimpleErrorAlert];
@@ -336,6 +360,8 @@
             } else {
                 [self.curOptionController optionsEnumerationFailedWithError:nil];
             }
+        } else if ([response findRecursivelyValueForKey:@"stat"]) {
+            //moved (or not, nevermind) uploaded photo to specified group
         } else {
             
             //error

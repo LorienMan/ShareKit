@@ -25,6 +25,8 @@
 #import "SHKTumblr.h"
 
 #import "SharersCommonHeaders.h"
+#import "SHKSession.h"
+
 #import "NSMutableDictionary+NSNullsToEmptyStrings.h"
 
 #define MAX_SIZE_MB_PHOTO 10
@@ -46,7 +48,6 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
 - (void)dealloc {
     
     [[NSNotificationCenter defaultCenter] removeObserver:getUserBlogsObserver];
-    
 }
 
 #pragma mark -
@@ -96,7 +97,7 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
 
 - (void)tokenAccessModifyRequest:(OAMutableURLRequest *)oRequest
 {
-	[oRequest setOAuthParameterName:@"oauth_verifier" withValue:[authorizeResponseQueryVars objectForKey:@"oauth_verifier"]];
+	[oRequest setOAuthParameterName:@"oauth_verifier" withValue:[self.authorizeResponseQueryVars objectForKey:@"oauth_verifier"]];
 }
 
 + (void)logout {
@@ -186,7 +187,8 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
         case SHKShareTypeImage:
         case SHKShareTypeFile:
         {
-            result = [NSMutableArray arrayWithObjects:blogField, [self titleFieldWithLabel:SHKLocalizedString(@"Caption")], tagsField, publishField, nil];
+            SHKFormFieldSettings *attachmentCaptionField = [SHKFormFieldLargeTextSettings label:SHKLocalizedString(@"Caption") key:@"title" start:self.item.title item:self.item];
+            result = [NSMutableArray arrayWithObjects:attachmentCaptionField, tagsField, blogField, publishField, nil];
         }
         default:
             break;
@@ -228,10 +230,10 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
         {
             [self setQuiet:YES];
             oRequest = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.tumblr.com/v2/user/info"]
-                                                                          consumer:consumer // this is a consumer object already made available to us
-                                                                             token:accessToken // this is our accessToken already made available to us
+                                                                          consumer:self.consumer // this is a consumer object already made available to us
+                                                                             token:self.accessToken // this is our accessToken already made available to us
                                                                              realm:nil
-                                                                 signatureProvider:signatureProvider];
+                                                                 signatureProvider:self.signatureProvider];
             [oRequest setHTTPMethod:@"GET"];
             [self sendRequest:oRequest];
             return YES;
@@ -325,21 +327,14 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
     [params addObjectsFromArray:@[tagsParam, publishParam]];
     [oRequest setParameters:params];
     
-    BOOL hasDataContent = self.item.image || self.item.file.data;
+    BOOL hasDataContent = self.item.image || self.item.file;
     if (hasDataContent) {
         
-        //media have to be sent as data. Prepare method makes OAuth signature prior appending the multipart/form-data 
-        [oRequest prepare];
-        
-        NSData *imageData = nil;
-        if (self.item.image) {
-            imageData = UIImageJPEGRepresentation(self.item.image, 0.9);
-        } else {
-            imageData = self.item.file.data;
+        if (self.item.image && !self.item.file) {
+            [self.item convertImageShareToFileShareOfType:SHKImageConversionTypeJPG quality:1];
         }
         
-        //append multipart/form-data
-        [oRequest attachFileWithParameterName:@"data" filename:self.item.file.filename contentType:self.item.file.mimeType data:imageData];
+        [oRequest attachFile:self.item.file withParameterName:@"data"];
     }
     
     [self sendRequest:oRequest];
@@ -354,28 +349,53 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
     
     NSString *urlString = [[NSString alloc] initWithFormat:@"http://api.tumblr.com/v2/blog/%@/post", [self.item customValueForKey:@"blog"] ?: [self primaryUserBlogBase]];
     OAMutableURLRequest *result = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
-                                               consumer:consumer // this is a consumer object already made available to us
-                                                  token:accessToken // this is our accessToken already made available to us
+                                               consumer:self.consumer // this is a consumer object already made available to us
+                                                  token:self.accessToken // this is our accessToken already made available to us
                                                   realm:nil
-                                      signatureProvider:signatureProvider];
+                                      signatureProvider:self.signatureProvider];
     [result setHTTPMethod:@"POST"];
     return result;
 }
 
 - (void)sendRequest:(OAMutableURLRequest *)finalizedRequest {
     
-    // Start the request
-    OAAsynchronousDataFetcher *fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:finalizedRequest
-                                                                                          delegate:self
-                                                                                 didFinishSelector:@selector(sendTicket:didFinishWithData:)
-                                                                                   didFailSelector:@selector(sendTicket:didFailWithError:)];
-    
-    [fetcher start];
+    BOOL canUseNSURLSession = NSClassFromString(@"NSURLSession") != nil;
+    if (self.item.file && canUseNSURLSession) {
+        
+        __weak typeof(self) weakSelf = self;
+        self.networkSession = [SHKSession startSessionWithRequest:finalizedRequest delegate:self completion:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            if (error.code == -999) {
+                [weakSelf sendDidCancel];
+            } else if (!error) {
+                [weakSelf sendDidFinishWithData:data response:(NSHTTPURLResponse *)response];
+            } else {
+                [weakSelf sendTicket:nil didFailWithError:error];
+            }
+            [[SHK currentHelper] removeSharerReference:self];
+        }];
+        [[SHK currentHelper] keepSharerReference:self];
+        
+    } else {
+
+        OAAsynchronousDataFetcher *fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:finalizedRequest
+                                                                                              delegate:self
+                                                                                     didFinishSelector:@selector(sendTicket:didFinishWithData:)
+                                                                                       didFailSelector:@selector(sendTicket:didFailWithError:)];
+        [fetcher start];
+    }
 }
 
 - (void)sendTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {	
-	if (ticket.didSucceed) {
+    [self sendDidFinishWithData:data response:ticket.response];
+}
+
+- (void)sendDidFinishWithData:(NSData *)data response:(NSHTTPURLResponse *)response {
+    
+    BOOL success = response.statusCode < 400;
+    
+    if (success) {
 		
 		switch (self.item.shareType) {
             case SHKShareTypeUserInfo:
@@ -389,7 +409,7 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
                 
                 [userInfo convertNSNullsToEmptyStrings];
                 [[NSUserDefaults standardUserDefaults] setObject:userInfo forKey:kSHKTumblrUserInfo];
-            
+                
                 break;
             }
             default:
@@ -400,7 +420,7 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
 		
 	} else {
 		
-        if (ticket.response.statusCode == 401) {
+        if (response.statusCode == 401) {
             
             //user revoked acces, ask access again
             [self shouldReloginWithPendingAction:SHKPendingSend];
@@ -410,9 +430,9 @@ NSString * const kSHKTumblrUserInfo = @"kSHKTumblrUserInfo";
             SHKLog(@"Tumblr send finished with error:%@", [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
             [self sendShowSimpleErrorAlert];
         }
-
 	}
 }
+
 - (void)sendTicket:(OAServiceTicket *)ticket didFailWithError:(NSError*)error
 {
 	SHKLog(@"Tumblr send failed with error:%@", [error description]);

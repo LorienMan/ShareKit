@@ -24,6 +24,7 @@
 
 @implementation SHKGooglePlus {
     BOOL _originalQuiet;
+    BOOL _pendingAuth;
 }
 
 #pragma mark -
@@ -88,6 +89,8 @@
     
     [[GPPSignIn sharedInstance] setDelegate:self];
     [[GPPSignIn sharedInstance] authenticate];
+
+    _pendingAuth = YES;
 }
 
 + (void)logout {
@@ -130,6 +133,7 @@
         
     }
     if (!self.isDisconnecting) {
+        [GPPSignIn sharedInstance].delegate = nil;
         [[SHK currentHelper] removeSharerReference:self]; //ref will be removed in didDisconnectWithError: if logoff is in progress
     }
 }
@@ -140,6 +144,7 @@
     } else {
         [self authDidFinish:NO]; //refresh UI
     }
+    [GPPSignIn sharedInstance].delegate = nil;
     [[SHK currentHelper] removeSharerReference:self];
 }
 
@@ -217,8 +222,23 @@
         [[SHK currentHelper] keepSharerReference:gPlusSharer];
     }
 
+    ((SHKGooglePlus *)[[GPPSignIn sharedInstance] delegate])->_pendingAuth = NO;
+
     BOOL result = [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
     return result;
+}
+
++ (void)handleDidBecomeActive {
+    if ([GPPSignIn sharedInstance].delegate) {
+        [(SHKGooglePlus *)[GPPSignIn sharedInstance].delegate handleDidBecomeActive];
+    }
+}
+
+- (void)handleDidBecomeActive {
+    if (_pendingAuth) {
+        [self authDidFinish:NO];
+        _pendingAuth = NO;
+    }
 }
 
 @end

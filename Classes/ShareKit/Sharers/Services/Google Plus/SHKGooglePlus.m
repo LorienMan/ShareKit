@@ -22,7 +22,9 @@
 
 @end
 
-@implementation SHKGooglePlus
+@implementation SHKGooglePlus {
+    BOOL _originalQuiet;
+}
 
 #pragma mark -
 #pragma mark Configuration : Service Defination
@@ -173,6 +175,7 @@
             return NO;
             break;
     }
+    _originalQuiet = self.quiet;
     self.quiet = YES; //if user cancels, on return blinks activity indicator. This disables it, as we share in safari and it is hidden anyway
     [self sendDidStart];
     
@@ -191,7 +194,7 @@
 - (void)finishedSharing:(BOOL)shared {
     
     if (shared) { 
-        self.quiet = NO;
+        self.quiet = _originalQuiet;
         [self sendDidFinish];
     } else {
         [self sendDidCancel];

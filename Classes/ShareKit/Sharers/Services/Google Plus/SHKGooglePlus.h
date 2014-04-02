@@ -40,5 +40,6 @@
 @interface SHKGooglePlus : SHKSharer <GPPShareDelegate, GPPSignInDelegate>
 
 + (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
++ (void)handleDidBecomeActive;
 
 @end

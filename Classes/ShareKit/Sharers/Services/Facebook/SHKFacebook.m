@@ -117,7 +117,7 @@ static SHKFacebook *requestingPermisSHKFacebook=nil;
 		if (allowLoginUI) [self displayActivity:SHKLocalizedString(@"Logging In...")];
         
         [FBSession setActiveSession:session];
-        [session openWithBehavior:FBSessionLoginBehaviorUseSystemAccountIfPresent
+        [session openWithBehavior:[SHKCONFIG(facebookUseSystemAccount) boolValue] ? FBSessionLoginBehaviorUseSystemAccountIfPresent : FBSessionLoginBehaviorWithFallbackToWebView
 				completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
 					if (allowLoginUI) [self hideActivityIndicator];
 					[self sessionStateChanged:session state:state error:error];

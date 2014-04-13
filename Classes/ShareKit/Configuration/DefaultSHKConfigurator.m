@@ -120,6 +120,10 @@ on the auth path. It will try to use native auth if availible.
     return nil;	// this is the defaul value for the SDK and will afford basic read permissions
 }
 
+- (NSNumber *)facebookUseSystemAccount {
+    return @YES;
+}
+
 /*
  Create a project on Google APIs console,
  https://code.google.com/apis/console . Under "API Access", create a

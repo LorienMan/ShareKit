@@ -44,6 +44,7 @@
 - (NSString*)facebookLocalAppId;
 - (NSArray*)facebookWritePermissions;
 - (NSArray*)facebookReadPermissions;
+- (NSNumber *)facebookUseSystemAccount;
 - (NSNumber*)forcePreIOS6FacebookPosting;
 - (NSString *)pocketConsumerKey;
 - (NSString*)diigoKey;

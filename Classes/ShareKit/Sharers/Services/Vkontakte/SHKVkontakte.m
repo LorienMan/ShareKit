@@ -149,6 +149,20 @@
 
 - (void)promptAuthorization
 {
+    if ([[self class] shareRequiresInternetConnection] && ![SHK connected])
+	{
+		if (!self.quiet)
+		{
+			[[[UIAlertView alloc] initWithTitle:SHKLocalizedString(@"Offline")
+                                        message:SHKLocalizedString(@"You must be online to login to %@", [self sharerTitle])
+                                       delegate:nil
+                              cancelButtonTitle:SHKLocalizedString(@"Close")
+                              otherButtonTitles:nil] show];
+            [self authDidFinish:NO];
+		}
+		return;
+	}
+    
 	SHKVkontakteOAuthView *rootView = [[SHKVkontakteOAuthView alloc] init];
 	rootView.appID = SHKCONFIG(vkontakteAppId);
 	rootView.delegate = self;

@@ -75,6 +75,7 @@
 	if(!appID) 
 	{
 		[[SHK currentHelper] hideCurrentViewControllerAnimated:YES];
+        [(SHKVkontakte *)delegate authFailed];
 		return;
 	}
 }
@@ -159,6 +160,7 @@
 	
 	SHKLog(@"vkWebView Error: %@", [error localizedDescription]);
 	[[SHK currentHelper] hideCurrentViewControllerAnimated:YES];
+    [(SHKVkontakte *)delegate authFailed];
 }
 
 #pragma mark - Methods

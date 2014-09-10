@@ -72,12 +72,7 @@
     BOOL result = alreadyAuthenticated;
     
     if (!alreadyAuthenticated) {
-        [[GPPSignIn sharedInstance] setDelegate:self];
-        result = [[GPPSignIn sharedInstance] trySilentAuthentication];
-        [[SHK currentHelper] keepSharerReference:self];
-        
-        //will be shared in auth callback. Without this Google+ native share sheet says: "User must be signed in to use the native sharebox." Here we can get if user has authorized before, but the app was killed/hibernated in the meantime
-        if (self.item) self.pendingAction = SHKPendingShare;
+        result = [[GPPSignIn sharedInstance] hasAuthInKeychain];
     }
     
 	return result;

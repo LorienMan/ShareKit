@@ -115,11 +115,6 @@
         }
     }
 
-    if (result) {
-        SHKFacebook *facebookSharer = [[SHKFacebook alloc] init];
-        [facebookSharer authDidFinish:result];
-    }
-
     return result;
 }
 
@@ -193,8 +188,11 @@
     FBSession *authSession = [[FBSession alloc] initWithPermissions:permissions];
 
     //completion happens within class method handleOpenURL:sourceApplication, thus nil handler here
+    [FBSession setActiveSession:authSession];
     [authSession openWithBehavior:[SHKCONFIG(facebookUseSystemAccount) boolValue] ? FBSessionLoginBehaviorUseSystemAccountIfPresent : FBSessionLoginBehaviorWithFallbackToWebView
-                 completionHandler:nil];
+                 completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                     [self authDidFinish:[self isAuthorized]];
+                 }];
 }
 
 + (NSString *)username {
@@ -232,13 +230,13 @@
     // Ask for publish_actions permissions in context
     if (self.item.shareType != SHKShareTypeUserInfo && ([[FBSession activeSession] permissions] == nil || [FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound)) {	// we need at least this.SHKCONFIG(facebookWritePermissions
         // No permissions found in session, ask for it
-        [self saveItemForLater:SHKPendingSend];
         [self displayActivity:SHKLocalizedString(@"Authenticating...")];
-
+        SHKItem *pendingItem = self.item;
+        self.item = nil;
         [FBSession.activeSession requestNewPublishPermissions:SHKCONFIG(facebookWritePermissions)
                                               defaultAudience:FBSessionDefaultAudienceFriends
                                             completionHandler:^(FBSession *session, NSError *error) {
-                                                [self restoreItem];
+                                                self.item = pendingItem;
                                                 [self hideActivityIndicator];
 
                                                 if (error) {

@@ -369,6 +369,20 @@ BOOL SHKinit;
 {	
 	
     NSArray *favoriteSharers = [[NSUserDefaults standardUserDefaults] objectForKey:[self favoritesKeyForItem:item]];
+    
+    //temporary check for iOS sharers. They were separated from original sharers such as SHKFacebook. Under certain circumstances this caused no sharers in shareMenu, see https://github.com/ShareKit/ShareKit/issues/885.
+    BOOL favoritesContainSoloLegacyFacebook = [favoriteSharers containsObject:@"SHKFacebook"] && ![favoriteSharers containsObject:@"SHKiOSFacebook"];
+    if (favoritesContainSoloLegacyFacebook) {
+        NSMutableArray *mutableFavoriteSharers = [favoriteSharers mutableCopy];
+        [mutableFavoriteSharers addObject:@"SHKiOSFacebook"];
+        favoriteSharers = mutableFavoriteSharers;
+    }
+    BOOL favoritesContainSoloLegacyTwitter = [favoriteSharers containsObject:@"SHKTwitter"] && ![favoriteSharers containsObject:@"SHKiOSTwitter"];
+    if (favoritesContainSoloLegacyTwitter) {
+        NSMutableArray *mutableFavoriteSharers = [favoriteSharers mutableCopy];
+        [mutableFavoriteSharers addObject:@"SHKiOSTwitter"];
+        favoriteSharers = mutableFavoriteSharers;
+    }
 		
 	// set defaults
 	if (favoriteSharers == nil)
@@ -490,45 +504,25 @@ BOOL SHKinit;
 
 + (NSString *)getAuthValueForKey:(NSString *)key forSharer:(NSString *)sharerId
 {
-#if TARGET_IPHONE_SIMULATOR
-	// Using NSUserDefaults for storage is very insecure, but because Keychain only exists on a device
-	// we use NSUserDefaults when running on the simulator to store objects.  This allows you to still test
-	// in the simulator.  You should NOT modify in a way that does not use keychain when actually deployed to a device.
-	return [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%@%@%@",SHKCONFIG(authPrefix),sharerId,key]];
-#else
-	return [SSKeychain passwordForService:[NSString stringWithFormat:@"%@%@",SHKCONFIG(authPrefix),sharerId] 
-								  account:key 
-									error:nil ];
-#endif
+
+    return [SSKeychain passwordForService:[NSString stringWithFormat:@"%@%@",SHKCONFIG(authPrefix),sharerId]
+                                  account:key
+                                    error:nil ];
 }
 
 + (void)setAuthValue:(NSString *)value forKey:(NSString *)key forSharer:(NSString *)sharerId
 {
-#if TARGET_IPHONE_SIMULATOR
-	// Using NSUserDefaults for storage is very insecure, but because Keychain only exists on a device
-	// we use NSUserDefaults when running on the simulator to store objects.  This allows you to still test
-	// in the simulator.  You should NOT modify in a way that does not use keychain when actually deployed to a device.
-	[[NSUserDefaults standardUserDefaults] setObject:value forKey:[NSString stringWithFormat:@"%@%@%@",SHKCONFIG(authPrefix),sharerId,key]];
-#else
-	[SSKeychain setPassword:value 
-				 forService:[NSString stringWithFormat:@"%@%@",SHKCONFIG(authPrefix),sharerId] 
-					account:key 
-					  error:nil];
-#endif
+    [SSKeychain setPassword:value
+                 forService:[NSString stringWithFormat:@"%@%@",SHKCONFIG(authPrefix),sharerId]
+                    account:key
+                      error:nil];
 }
 
 + (void)removeAuthValueForKey:(NSString *)key forSharer:(NSString *)sharerId
 {
-#if TARGET_IPHONE_SIMULATOR
-	// Using NSUserDefaults for storage is very insecure, but because Keychain only exists on a device
-	// we use NSUserDefaults when running on the simulator to store objects.  This allows you to still test
-	// in the simulator.  You should NOT modify in a way that does not use keychain when actually deployed to a device.
-	[[NSUserDefaults standardUserDefaults] removeObjectForKey:[NSString stringWithFormat:@"%@%@%@",SHKCONFIG(authPrefix),sharerId,key]];
-#else
-	[SSKeychain deletePasswordForService:[NSString stringWithFormat:@"%@%@",SHKCONFIG(authPrefix),sharerId] 
-								 account:key 
-								   error:nil];
-#endif
+    [SSKeychain deletePasswordForService:[NSString stringWithFormat:@"%@%@",SHKCONFIG(authPrefix),sharerId]
+                                 account:key
+                                   error:nil];
 }
 
 + (void)logoutOfAll

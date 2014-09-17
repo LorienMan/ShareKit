@@ -52,6 +52,11 @@ typedef void (^SHKRequestHandler)(NSData *responseData, NSURLResponse *urlRespon
     
     ACAccountStore *store = [[ACAccountStore alloc] init];
     ACAccountType *sharerAccountType = [store accountTypeWithAccountTypeIdentifier:[self accountTypeIdentifier]];
+    
+    if (![sharerAccountType.identifier isEqualToString:ACAccountTypeIdentifierFacebook]) {
+        NSLog(@"Wrong ACAccount type, is nil but should be Facebook type. If you can repeat this situation, please open an issue in ShareKit's Github");
+        return;
+    }
     NSDictionary *writePermissions = @{ACFacebookAppIdKey: SHKCONFIG(facebookAppId),
                               ACFacebookPermissionsKey: SHKCONFIG(facebookWritePermissions),
                               ACFacebookAudienceKey: ACFacebookAudienceEveryone};
@@ -123,6 +128,7 @@ typedef void (^SHKRequestHandler)(NSData *responseData, NSURLResponse *urlRespon
 + (void)logout {
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSHKFacebookUserInfo];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSHKFacebookVideoUploadLimits];
 }
 
 #pragma mark - ShareKit UI
@@ -251,6 +257,7 @@ typedef void (^SHKRequestHandler)(NSData *responseData, NSURLResponse *urlRespon
                         [parsedResponse convertNSNullsToEmptyStrings];
                         [[NSUserDefaults standardUserDefaults] setObject:parsedResponse forKey:kSHKFacebookUserInfo];
                         SHKLog(@"saved Facebook UserInfo");
+                        
                     } else if (!parseError && parsedResponse[@"video_upload_limits"]) {
                         
                         [parsedResponse convertNSNullsToEmptyStrings];

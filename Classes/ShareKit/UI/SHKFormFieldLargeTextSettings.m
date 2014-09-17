@@ -9,11 +9,13 @@
 #import "SHKFormFieldLargeTextSettings.h"
 
 #import "UIImage+OurBundle.h"
+#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
 @interface SHKFormFieldLargeTextSettings ()
 
 /// Shared item. Cell might display its properties, such as image, file etc.
 @property (nonatomic, strong) SHKItem *item;
+@property (nonatomic) BOOL shouldShowExtension;
 
 @end
 
@@ -34,23 +36,59 @@
     return result;    
 }
 
-- (UIImage *)imageForThumbnail {
+- (void)setupThumbnailOnImageView:(UIImageView *)imageView {
     
-    if (self.item.image) {
-        return self.item.image;
-    } else {
-        return [UIImage imageNamedFromOurBundle:@"DETweetURLAttachment.png"];
+    imageView.image = nil;
+    
+    switch (self.item.shareType) {
+        case SHKShareTypeImage:
+        case SHKShareTypeURL:
+        case SHKShareTypeText:
+            
+            if (self.item.image) {
+                imageView.image = self.item.image;
+            } else if (self.item.URLPictureURI) {
+                [imageView setImageWithURL:self.item.URLPictureURI placeholderImage:[UIImage imageNamedFromOurBundle:@"DETweetURLAttachment.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+            } else {
+                
+                if (self.item.URLContentType == SHKURLContentTypeImage) {
+                    [imageView setImageWithURL:self.item.URL placeholderImage:[UIImage imageNamedFromOurBundle:@"DETweetURLAttachment.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+                } else {
+                    imageView.image = [UIImage imageNamedFromOurBundle:@"DETweetURLAttachment.png"];
+                }
+            }
+            break;
+            
+        case SHKShareTypeFile:
+        
+            self.shouldShowExtension = NO;
+            
+            if ([self.item.file hasData]) {
+                imageView.image = [UIImage imageWithData:self.item.file.data];
+            } else {
+                imageView.image = [UIImage imageWithContentsOfFile:self.item.file.path];
+            }
+            
+            if (!imageView.image && self.item.URLPictureURI) {
+                  [imageView setImageWithURL:self.item.URLPictureURI placeholderImage:[UIImage imageNamedFromOurBundle:@"DETweetURLAttachment.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+            } else if (!imageView.image) {
+                self.shouldShowExtension = YES;
+                imageView.image = [UIImage imageNamedFromOurBundle:@"SHKShareFileIcon.png"];
+            }
+            
+            break;
+        default:
+            break;
     }
 }
 
 - (NSString *)extensionForThumbnail {
     
-    return [self.item.file.filename pathExtension];
-}
-
-- (SHKShareType)shareType {
-    
-    return self.item.shareType;
+    if (self.shouldShowExtension) {
+        return [self.item.file.filename pathExtension];
+    } else {
+        return nil;
+    }
 }
 
 @end

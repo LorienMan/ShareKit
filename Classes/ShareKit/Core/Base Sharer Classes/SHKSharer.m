@@ -175,7 +175,7 @@ static NSString *const kSHKStoredShareInfoKey=@"kSHKStoredShareInfo";
 {
 	if (self = [super initWithNibName:nil bundle:nil])
 	{
-        _shareDelegate = [[SHKSharerDelegate alloc] init];
+        _shareDelegate = [[SHKCONFIG(SHKSharerDelegateSubclass) alloc] init];
 				
 		if ([self respondsToSelector:@selector(modalPresentationStyle)])
 			self.modalPresentationStyle = [SHK modalPresentationStyleForController:self];
@@ -423,6 +423,9 @@ static NSString *const kSHKStoredShareInfoKey=@"kSHKStoredShareInfo";
 
 - (void)share
 {
+    if (![NSThread isMainThread]) {
+        SHKLog(@"You are calling share on a secondary thread. You should always call share on a main thread to make sure a sharer works properly.");
+    }
 	// isAuthorized - If service requires login and details have not been saved, present login dialog
 	if (![self authorize]) {
         

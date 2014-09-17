@@ -44,6 +44,8 @@
 		7A04083A17413908003404B9 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A04083817413908003404B9 /* RootViewController.xib */; };
 		7A04083C1741399E003404B9 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A04083B1741399E003404B9 /* MainWindow-iPad.xib */; };
 		7A0FB85017A4460C00B88C87 /* libShareKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA2E84D1743805E00B17434 /* libShareKit.a */; };
+		7A70B30D191F619A0070C5FB /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A70B30A191F619A0070C5FB /* Pinterest.framework */; };
+		7A70B30E191F619A0070C5FB /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A70B30C191F619A0070C5FB /* PinterestSDKResources.bundle */; };
 		7A85B55F17FA220100C86E77 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A85B53317FA1FD900C86E77 /* libxml2.dylib */; };
 		7A9FEF3C180741840053CB40 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9FEF3B180741840053CB40 /* GooglePlus.framework */; };
 		7A9FEF661807422D0053CB40 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9FEF651807422D0053CB40 /* CoreText.framework */; };
@@ -60,6 +62,9 @@
 		7AD7D63617EC75FE00DE20F6 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD7D63517EC75FE00DE20F6 /* DropboxSDK.framework */; };
 		7AD89CB91876134B007D3740 /* demo_large_video_share.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7AD89CB81876134B007D3740 /* demo_large_video_share.mp4 */; };
 		7AE5333E18129CE300C66849 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE5333D18129CE300C66849 /* ImageIO.framework */; };
+		AC87CBD818EDF81300BBA454 /* LiveSDK.framework in Resources */ = {isa = PBXBuildFile; fileRef = DBCA448718EB185300D4AD00 /* LiveSDK.framework */; };
+		C4DBEC9D192E4ED1009712AD /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4DBEC9C192E4ED1009712AD /* SafariServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DBCA448818EB185300D4AD00 /* LiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA448718EB185300D4AD00 /* LiveSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +81,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 7ADB643918C5BF3B00B5AF7F;
 			remoteInfo = PKMultipartInputStream;
+		};
+		7A70B2E7191C8BA70070C5FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A0406C01740F1FD003404B9 /* ShareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4932D60E18DCBD840075FEE8;
+			remoteInfo = Imgur;
+		};
+		7A70B2E9191C8BA70070C5FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A0406C01740F1FD003404B9 /* ShareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7A70B2AF191C7E950070C5FB;
+			remoteInfo = Pinterest;
 		};
 		7AA2E84C1743805E00B17434 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -371,6 +390,41 @@
 			remoteGlobalIDString = 7A4E4663173E2C2500CCEE80;
 			remoteInfo = "Pocket SDK";
 		};
+		C4DBECCD192E4ED1009712AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A0406C01740F1FD003404B9 /* ShareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7AB8A568192505B200EC73A2;
+			remoteInfo = SDWebImage;
+		};
+		C4DBECCF192E4ED1009712AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A0406C01740F1FD003404B9 /* ShareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4823E1B192932780099673A;
+			remoteInfo = "Open in Chrome";
+		};
+		C4DBECD1192E4ED1009712AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A0406C01740F1FD003404B9 /* ShareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4823E2E192936150099673A;
+			remoteInfo = "Open in 1Password";
+		};
+		C4DBECD3192E4ED1009712AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A0406C01740F1FD003404B9 /* ShareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4B15457192E077E0080EBE3;
+			remoteInfo = "Reading List";
+		};
+		DBCA44B218EB185300D4AD00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A0406C01740F1FD003404B9 /* ShareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AC2195F318EA885C003DF6BD;
+			remoteInfo = OneNote;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -421,6 +475,8 @@
 		7A04083717413908003404B9 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		7A04083817413908003404B9 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		7A04083B1741399E003404B9 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		7A70B30A191F619A0070C5FB /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pinterest.framework; sourceTree = "<group>"; };
+		7A70B30C191F619A0070C5FB /* PinterestSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PinterestSDKResources.bundle; sourceTree = "<group>"; };
 		7A85B53317FA1FD900C86E77 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		7A9FEF3B180741840053CB40 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = Frameworks/GooglePlus.framework; sourceTree = "<group>"; };
 		7A9FEF651807422D0053CB40 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -436,6 +492,8 @@
 		7AD7D63517EC75FE00DE20F6 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxSDK.framework; path = Frameworks/DropboxSDK.framework; sourceTree = "<group>"; };
 		7AD89CB81876134B007D3740 /* demo_large_video_share.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo_large_video_share.mp4; sourceTree = "<group>"; };
 		7AE5333D18129CE300C66849 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		C4DBEC9C192E4ED1009712AD /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		DBCA448718EB185300D4AD00 /* LiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LiveSDK.framework; path = Frameworks/LiveSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -443,6 +501,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4DBEC9D192E4ED1009712AD /* SafariServices.framework in Frameworks */,
 				7AB4D67F18631C8D00B54FE0 /* AddressBook.framework in Frameworks */,
 				7AE5333E18129CE300C66849 /* ImageIO.framework in Frameworks */,
 				7A9FEF6C1807430A0053CB40 /* MediaPlayer.framework in Frameworks */,
@@ -456,6 +515,7 @@
 				7A040832174133C5003404B9 /* Social.framework in Frameworks */,
 				7A04076A17410472003404B9 /* QuartzCore.framework in Frameworks */,
 				7A04076617410442003404B9 /* libsqlite3.dylib in Frameworks */,
+				7A70B30D191F619A0070C5FB /* Pinterest.framework in Frameworks */,
 				7A04076417410435003404B9 /* Accounts.framework in Frameworks */,
 				7A0407621741042E003404B9 /* AdSupport.framework in Frameworks */,
 				7A04076017410423003404B9 /* Twitter.framework in Frameworks */,
@@ -469,6 +529,7 @@
 				7A040752174103EB003404B9 /* Security.framework in Frameworks */,
 				7A040750174103E4003404B9 /* SystemConfiguration.framework in Frameworks */,
 				7A0406671740E3F6003404B9 /* UIKit.framework in Frameworks */,
+				DBCA448818EB185300D4AD00 /* LiveSDK.framework in Frameworks */,
 				7AD6581C18576AA9002D6245 /* GoogleOpenSource.framework in Frameworks */,
 				7A0406691740E3F6003404B9 /* Foundation.framework in Frameworks */,
 				7A04066B1740E3F6003404B9 /* CoreGraphics.framework in Frameworks */,
@@ -501,6 +562,9 @@
 		7A0406651740E3F6003404B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4DBEC9C192E4ED1009712AD /* SafariServices.framework */,
+				7A70B309191F619A0070C5FB /* Pinterest.embeddedframework */,
+				DBCA448718EB185300D4AD00 /* LiveSDK.framework */,
 				7AB4D67E18631C8D00B54FE0 /* AddressBook.framework */,
 				7AD6584718576FC3002D6245 /* GooglePlus.bundle */,
 				7AD6581B18576AA9002D6245 /* GoogleOpenSource.framework */,
@@ -587,6 +651,24 @@
 			name = Submodules;
 			sourceTree = "<group>";
 		};
+		7A70B309191F619A0070C5FB /* Pinterest.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				7A70B30A191F619A0070C5FB /* Pinterest.framework */,
+				7A70B30B191F619A0070C5FB /* Resources */,
+			);
+			name = Pinterest.embeddedframework;
+			path = Frameworks/Pinterest.embeddedframework;
+			sourceTree = "<group>";
+		};
+		7A70B30B191F619A0070C5FB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7A70B30C191F619A0070C5FB /* PinterestSDKResources.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		7AA2E81F1743805E00B17434 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,6 +714,13 @@
 				94CC293817453A3100C31CD8 /* libPocket SDK.a */,
 				7AD6584618576AAA002D6245 /* Static Library Tests.xctest */,
 				7A11916118D7450A004353B7 /* libPKMultipartInputStream.a */,
+				7A70B2E8191C8BA70070C5FB /* libImgur.a */,
+				DBCA44B318EB185300D4AD00 /* libOneNote.a */,
+				7A70B2EA191C8BA70070C5FB /* libPinterest.a */,
+				C4DBECCE192E4ED1009712AD /* libSDWebImage.a */,
+				C4DBECD0192E4ED1009712AD /* libOpen in Chrome.a */,
+				C4DBECD2192E4ED1009712AD /* libOpen in 1Password.a */,
+				C4DBECD4192E4ED1009712AD /* libReadingList.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -722,6 +811,20 @@
 			fileType = archive.ar;
 			path = libPKMultipartInputStream.a;
 			remoteRef = 7A11916018D7450A004353B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7A70B2E8191C8BA70070C5FB /* libImgur.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libImgur.a;
+			remoteRef = 7A70B2E7191C8BA70070C5FB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7A70B2EA191C8BA70070C5FB /* libPinterest.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPinterest.a;
+			remoteRef = 7A70B2E9191C8BA70070C5FB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		7AA2E84D1743805E00B17434 /* libShareKit.a */ = {
@@ -1011,6 +1114,41 @@
 			remoteRef = 94CC293717453A3100C31CD8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		C4DBECCE192E4ED1009712AD /* libSDWebImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImage.a;
+			remoteRef = C4DBECCD192E4ED1009712AD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4DBECD0192E4ED1009712AD /* libOpen in Chrome.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libOpen in Chrome.a";
+			remoteRef = C4DBECCF192E4ED1009712AD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4DBECD2192E4ED1009712AD /* libOpen in 1Password.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libOpen in 1Password.a";
+			remoteRef = C4DBECD1192E4ED1009712AD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4DBECD4192E4ED1009712AD /* libReadingList.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReadingList.a;
+			remoteRef = C4DBECD3192E4ED1009712AD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DBCA44B318EB185300D4AD00 /* libOneNote.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOneNote.a;
+			remoteRef = DBCA44B218EB185300D4AD00 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1018,7 +1156,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC87CBD818EDF81300BBA454 /* LiveSDK.framework in Resources */,
 				7AA2E93E1743828300B17434 /* ShareKit.bundle in Resources */,
+				7A70B30E191F619A0070C5FB /* PinterestSDKResources.bundle in Resources */,
 				7A0406711740E3F6003404B9 /* InfoPlist.strings in Resources */,
 				7A0406791740E3F6003404B9 /* Default.png in Resources */,
 				7A04067B1740E3F6003404B9 /* Default@2x.png in Resources */,
@@ -1160,7 +1300,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch *.xcode* (*) .DS_Store CVS .svn .git .hg *.framework";
-				FRAMEWORK_SEARCH_PATHS = $inherited;
+				FRAMEWORK_SEARCH_PATHS = (
+					$inherited,
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Frameworks/Pinterest.embeddedframework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShareKit demo app/ShareKit demo app-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
@@ -1177,7 +1321,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch *.xcode* (*) .DS_Store CVS .svn .git .hg *.framework";
-				FRAMEWORK_SEARCH_PATHS = $inherited;
+				FRAMEWORK_SEARCH_PATHS = (
+					$inherited,
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Frameworks/Pinterest.embeddedframework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShareKit demo app/ShareKit demo app-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";

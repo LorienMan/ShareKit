@@ -9,11 +9,15 @@
 		<string>SHKMail</string>
 		<string>SHKPrint</string>
 		<string>SHKSafari</string>
+		<string>SHKChrome</string>
+		<string>SHK1Password</string>
 		<string>SHKTextMessage</string>
 		<string>SHKLogout</string>
+		<string>SHKReadingList</string>
 	</array>
 	<key>services</key>
 	<array>
+		<string>SHKOneNote</string>
 		<string>SHKKippt</string>
 		<string>SHKReadability</string>
 		<string>SHKEvernote</string>
@@ -39,6 +43,8 @@
 		<string>SHKDropbox</string>
 		<string>SHKYouTube</string>
 		<string>SHKFlickr</string>
+		<string>SHKImgur</string>
+		<string>SHKPinterest</string>
 	</array>
 </dict>
 </plist>

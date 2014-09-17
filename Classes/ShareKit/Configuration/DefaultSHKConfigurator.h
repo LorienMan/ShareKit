@@ -39,6 +39,7 @@
 - (NSArray*)defaultFavoriteFileSharers __attribute__((deprecated("use defaultFavoriteSharersForFile: instead")));
 - (NSArray*)defaultFavoriteSharersForMimeType:(NSString *)mimeType __attribute__((deprecated("use defaultFavoriteSharersForFile: instead")));
 - (NSArray*)defaultFavoriteSharersForFile:(SHKFile *)file;
+- (NSString*)onenoteClientId;
 - (NSString*)vkontakteAppId;
 - (NSString*)facebookAppId;
 - (NSString*)facebookLocalAppId;
@@ -107,6 +108,7 @@
 - (Class)SHKUploadsViewControllerSubclass;
 - (Class)SHKAccountsViewControllerSubclass;
 - (Class)SHKActivityIndicatorSubclass;
+- (Class)SHKSharerDelegateSubclass;
 //SHKDropbox
 -(NSString *)dropboxAppKey;
 -(NSString *)dropboxAppSecret;
@@ -114,6 +116,10 @@
 -(NSNumber *)dropboxShouldOverwriteExistedFile;
 //SHKBuffer
 - (NSNumber *)bufferShouldShortenURLS;
+//SHKImgur
+- (NSString *)imgurClientID;
+- (NSString *)imgurClientSecret;
+- (NSString *)imgurCallbackURL;
 
 #pragma mark - default values for sharer specific extension SHKItem properties
 //SHKPrint

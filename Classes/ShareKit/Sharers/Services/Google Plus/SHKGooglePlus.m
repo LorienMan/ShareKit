@@ -72,7 +72,10 @@
     BOOL result = alreadyAuthenticated;
     
     if (!alreadyAuthenticated) {
-        result = [[GPPSignIn sharedInstance] hasAuthInKeychain];
+        id delegate = [GPPSignIn sharedInstance].delegate;
+        [GPPSignIn sharedInstance].delegate = nil;
+        result = [[GPPSignIn sharedInstance] trySilentAuthentication];
+        [GPPSignIn sharedInstance].delegate = delegate;
     }
     
 	return result;

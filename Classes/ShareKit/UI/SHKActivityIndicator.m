@@ -130,9 +130,9 @@
 }
 
 - (UILabel *)subMessageLabel {
-    
+
     if (!_subMessageLabel) {
-        
+
         _subMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(12,self.bounds.size.height-45,self.bounds.size.width-24,30)];
         _subMessageLabel.backgroundColor = [UIColor clearColor];
         _subMessageLabel.opaque = NO;
@@ -142,7 +142,7 @@
         _subMessageLabel.shadowColor = [UIColor darkGrayColor];
         _subMessageLabel.shadowOffset = CGSizeMake(1,1);
         _subMessageLabel.adjustsFontSizeToFitWidth = YES;
-        
+
         [self addSubview:_subMessageLabel];
     }
     return _subMessageLabel;
@@ -197,10 +197,11 @@
 
 - (void)setupProgress
 {
-    self.tapToDismissRecognizer.enabled = YES;
+    // Do not allow to dismiss progress
+    self.tapToDismissRecognizer.enabled = NO;
     self.userInteractionEnabled = YES;
     [self hideSpinner];
-    self.upperMessageLabel.text = SHKLocalizedString(@"Tap to dismiss");
+    self.upperMessageLabel.text = SHKLocalizedString(@"Progress:");
 }
 
 

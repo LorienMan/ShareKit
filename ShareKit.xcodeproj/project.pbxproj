@@ -366,6 +366,8 @@
 		C4823E2F192936290099673A /* SHK1Password.m in Sources */ = {isa = PBXBuildFile; fileRef = C4823E23192935A90099673A /* SHK1Password.m */; };
 		C4823E32192936570099673A /* libOpen in 1Password.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4823E2E192936150099673A /* libOpen in 1Password.a */; };
 		C4B1545B192E08050080EBE3 /* libReadingList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B15457192E077E0080EBE3 /* libReadingList.a */; };
+		C5DCC7671A12A34800DBD328 /* SHKPinterestNoArc.h in Headers */ = {isa = PBXBuildFile; fileRef = C5DCC7651A12A34800DBD328 /* SHKPinterestNoArc.h */; };
+		C5DCC7691A12A34800DBD328 /* SHKPinterestNoArc.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DCC7661A12A34800DBD328 /* SHKPinterestNoArc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CE857E3C16771F7C005003DA /* SHKVKontakteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE857E3816771D78005003DA /* SHKVKontakteRequest.m */; };
 		DE334C2216F3339300FF692B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		DE334C2D16F3339A00FF692B /* SHKDropbox.m in Sources */ = {isa = PBXBuildFile; fileRef = DE334C0616F3319800FF692B /* SHKDropbox.m */; };
@@ -1284,6 +1286,8 @@
 		C4823E2E192936150099673A /* libOpen in 1Password.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libOpen in 1Password.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B15457192E077E0080EBE3 /* libReadingList.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReadingList.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B15458192E07A60080EBE3 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		C5DCC7651A12A34800DBD328 /* SHKPinterestNoArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHKPinterestNoArc.h; path = Pinterest/SHKPinterestNoArc.h; sourceTree = "<group>"; };
+		C5DCC7661A12A34800DBD328 /* SHKPinterestNoArc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHKPinterestNoArc.m; path = Pinterest/SHKPinterestNoArc.m; sourceTree = "<group>"; };
 		CE857E3716771D78005003DA /* SHKVKontakteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKVKontakteRequest.h; sourceTree = "<group>"; };
 		CE857E3816771D78005003DA /* SHKVKontakteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKVKontakteRequest.m; sourceTree = "<group>"; };
 		DE334C0516F3319800FF692B /* SHKDropbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHKDropbox.h; sourceTree = "<group>"; };
@@ -2402,6 +2406,8 @@
 			children = (
 				7A70B2B3191C7F760070C5FB /* SHKPinterest.h */,
 				7A70B2B4191C7F760070C5FB /* SHKPinterest.m */,
+				C5DCC7651A12A34800DBD328 /* SHKPinterestNoArc.h */,
+				C5DCC7661A12A34800DBD328 /* SHKPinterestNoArc.m */,
 			);
 			name = Pinterest;
 			sourceTree = "<group>";
@@ -3084,6 +3090,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5DCC7671A12A34800DBD328 /* SHKPinterestNoArc.h in Headers */,
 				7AE8DC7C165B549B004D99D2 /* DummyLibFile.h in Headers */,
 				C4823E24192935A90099673A /* SHK1Password.h in Headers */,
 				C4823E10192931730099673A /* SHKChrome.h in Headers */,
@@ -4306,7 +4313,6 @@
 				AABBED7E162F0C4D009D46E4 /* Tumbl */,
 				7A1AFD2B160E14340086B98A /* Twitter */,
 				AABBED12162F08A3009D46E4 /* VKontakte */,
-				7AC2A38E16597F4C0089ABE8 /* Sina Weibo */,
 				7A49DBBB16BC193E004B7E78 /* Readability */,
 				7A203D0216EB7DA200421995 /* Hatena */,
 				7AAE8C9D16EB960500429C51 /* Plurk */,
@@ -4565,6 +4571,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A70B2B5191C7F760070C5FB /* SHKPinterest.m in Sources */,
+				C5DCC7691A12A34800DBD328 /* SHKPinterestNoArc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,6 +24,7 @@
 
 #import "SHKPinterest.h"
 #import "SharersCommonHeaders.h"
+#import "SHKPinterestNoArc.h"
 
 #ifdef COCOAPODS
 #import "Pinterest.h"
@@ -44,9 +45,10 @@
 + (BOOL)canShareItem:(SHKItem *)item {
  
     BOOL isOfImageType = item.URLContentType == SHKShareTypeImage && item.URL != nil;
+    BOOL isOfWebPageType = item.URLContentType == SHKURLContentTypeWebpage && item.URL != nil;
     BOOL isPictureURI = item.URLPictureURI != nil;
     
-    return isOfImageType || isPictureURI;
+    return isOfImageType || isOfWebPageType || isPictureURI;
 }
 
 + (BOOL)requiresAuthentication { return NO; }
@@ -56,7 +58,7 @@
 
 + (BOOL)canShare {
     NSString *clientId = SHKCONFIG(pinterestClientId);
-    return clientId && [[[Pinterest alloc] initWithClientId:clientId] canPinWithSDK];
+    return clientId && [[SHKPinterestNoArc pinterestWithClientId:clientId] canPinWithSDK];
 }
 
 #pragma mark -
@@ -78,20 +80,26 @@
 }
 
 - (BOOL) send {
-    
     // Make sure that the item has minimum requirements
 	if (![self validateItem])
 		return NO;
     
     NSString *clientId = SHKCONFIG(pinterestClientId);
-    Pinterest *pinterest = [[Pinterest alloc] initWithClientId:clientId];
     
     if (self.item.URLPictureURI) {
-        [pinterest createPinWithImageURL:self.item.URLPictureURI sourceURL:self.item.URL description:self.item.title];
+        [SHKPinterestNoArc createPinWithClientId:clientId
+                                        imageURL:[self.item.URLPictureURI copy]
+                                       sourceURL:[self.item.URL copy]
+                                     description:[self.item.title copy]];
     } else {
-        [pinterest createPinWithImageURL:self.item.URL sourceURL:nil description:self.item.title];
+        [SHKPinterestNoArc createPinWithClientId:clientId
+                                        imageURL:[self.item.URL copy]
+                                       sourceURL:nil
+                                     description:[self.item.title copy]];
     }
-    
+
+    self.item = nil;
+
     return YES;
 }
 

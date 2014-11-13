@@ -96,9 +96,12 @@
             } else {
 
                 //this allows for completion block to finish and continue sharing AFTER. Otherwise strange black windows and orphan webview login showed up.
-                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [facebookSharer tryPendingAction];
                 });
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [facebookSharer tryPendingAction];
+//                });
             }
         };
 
@@ -192,6 +195,13 @@
     [authSession openWithBehavior:[SHKCONFIG(facebookUseSystemAccount) boolValue] ? FBSessionLoginBehaviorUseSystemAccountIfPresent : FBSessionLoginBehaviorWithFallbackToWebView
                  completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
                      [self authDidFinish:[self isAuthorized]];
+                     if ([self isAuthorized]) {
+                         [FBSession setActiveSession:session];
+                         
+                         if (self.item) {
+                             [self send];
+                         }
+                     }
                  }];
 }
 
@@ -219,12 +229,19 @@
 }
 
 - (BOOL)send {
-
-    if (![self validateItem])
+    if (![self validateItem]) {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                initWithTitle:@"Error"
+                      message:@"Failed to share to Facebook because of invalid item"
+                     delegate:nil
+            cancelButtonTitle:@"Close"
+            otherButtonTitles:nil];
+        [alertView show];
         return NO;
+    }
 
     if (FBSession.activeSession.state != FBSessionStateOpen && FBSession.activeSession.state != FBSessionStateOpenTokenExtended && FBSession.activeSession.state != FBSessionStateCreatedOpening) {
-        [[FBSession activeSession] openWithCompletionHandler:nil];
+        [FBSession.activeSession openWithCompletionHandler:nil];
     }
 
     // Ask for publish_actions permissions in context
@@ -240,9 +257,9 @@
                                                 [self hideActivityIndicator];
 
                                                 if (error) {
-
                                                     if (error.fberrorCategory == FBErrorCategoryUserCancelled) {
-
+                                                        self.item = nil;
+                                                        self.pendingAction = SHKPendingNone;
                                                         [self sendDidCancel];
                                                         return;
 
@@ -252,14 +269,25 @@
                                                                 initWithTitle:@"Error"
                                                                       message:error.fberrorUserMessage
                                                                      delegate:nil
-                                                            cancelButtonTitle:@"OK"
+                                                            cancelButtonTitle:@"Close"
                                                             otherButtonTitles:nil];
                                                         [alertView show];
 
                                                         self.pendingAction = SHKPendingShare;	// flip back to here so they can cancel
                                                         [self tryPendingAction];
+                                                    } else {
+                                                        UIAlertView *alertView = [[UIAlertView alloc]
+                                                                initWithTitle:@"Error"
+                                                                      message:@"Failed to share to Facebook, try again later"
+                                                                     delegate:nil
+                                                            cancelButtonTitle:@"Close"
+                                                            otherButtonTitles:nil];
+                                                        [alertView show];
+                                                        
+                                                        self.item = nil;
+                                                        self.pendingAction = SHKPendingNone;
+                                                        [self sendDidFailWithError:error];
                                                     }
-
                                                 }else{
                                                     // If permissions granted, publish the story
                                                     [self doSend];

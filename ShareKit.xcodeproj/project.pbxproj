@@ -91,6 +91,8 @@
 		7A1AFD3C160E14520086B98A /* SHKTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A536E911DBE3B9004A1712 /* SHKTwitter.m */; };
 		7A203D0B16EB7E0100421995 /* SHKHatena.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A203D0116EB776D00421995 /* SHKHatena.m */; };
 		7A203D0C16EB7E2300421995 /* libHatena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A203D0A16EB7DA200421995 /* libHatena.a */; };
+		7A278E861A93D1380065B351 /* SHKWhatsApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A278E831A93D1140065B351 /* SHKWhatsApp.m */; };
+		7A278E891A93D1620065B351 /* libWhatsApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A278E801A93D0B90065B351 /* libWhatsApp.a */; };
 		7A2882571553D7E1007DC379 /* SHKSharers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43A536AC11DBE3B9004A1712 /* SHKSharers.plist */; };
 		7A3082B416DA0721005AF769 /* SHKTumblr.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3082B216D9E255005AF769 /* SHKTumblr.m */; };
 		7A367313184CBAFB00D63F4F /* testXMLAttributes.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7A367312184CBAFB00D63F4F /* testXMLAttributes.xml */; };
@@ -102,6 +104,11 @@
 		7A3A0D84170CBDD300A0B717 /* SHKFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3A0D82170CBDD300A0B717 /* SHKFile.m */; };
 		7A49DBBD16BC193E004B7E78 /* SHKReadability.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB495A31520349A00505A99 /* SHKReadability.m */; };
 		7A49DBC716BC19BD004B7E78 /* libReadability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A49DBC316BC193E004B7E78 /* libReadability.a */; };
+		7A5340BB1A1E517A00659425 /* UIView+WebCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5340B91A1E517A00659425 /* UIView+WebCacheOperation.h */; };
+		7A5340BC1A1E517A00659425 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A5340BA1A1E517A00659425 /* UIView+WebCacheOperation.m */; };
+		7A5340CE1A1F3C3200659425 /* ISO8601DateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5340CB1A1F3C3200659425 /* ISO8601DateFormatter.h */; };
+		7A5340CF1A1F3C3200659425 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A5340CC1A1F3C3200659425 /* ISO8601DateFormatter.m */; };
+		7A5340D21A1F3C6700659425 /* libiso-8601-date-formatter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5340CA1A1F3B6100659425 /* libiso-8601-date-formatter.a */; };
 		7A56BFC41659173D00134F04 /* SHKiOSSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A56BFC01659173D00134F04 /* SHKiOSSharer.m */; };
 		7A56BFDE16591FE000134F04 /* SHKiOSFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A56BFD916591FE000134F04 /* SHKiOSFacebook.m */; };
 		7A57618F17A8034A00B38ACB /* SHKFormFieldCellTextLarge.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A57618D17A8034900B38ACB /* SHKFormFieldCellTextLarge.h */; };
@@ -326,6 +333,8 @@
 		7AEEDC8F18508E3600AD7E69 /* NSString+LinkedIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEEDC8D18508E3600AD7E69 /* NSString+LinkedIn.m */; };
 		7AF701F718BCCCF400438CE2 /* SHKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AF701F518BCCCF400438CE2 /* SHKSession.h */; };
 		7AF701F818BCCCF400438CE2 /* SHKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF701F618BCCCF400438CE2 /* SHKSession.m */; };
+		7AFFA2731A48824800D38D0B /* SHKAlertController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AFFA2711A48824800D38D0B /* SHKAlertController.h */; };
+		7AFFA2741A48824800D38D0B /* SHKAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFA2721A48824800D38D0B /* SHKAlertController.m */; };
 		9492063917302B4C00DF9530 /* libKippt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AABBECFF162F0835009D46E4 /* libKippt.a */; };
 		949BCB97172A99AF00D706D4 /* SHKBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 949BCB95172A99AF00D706D4 /* SHKBuffer.h */; };
 		949BCB98172A99AF00D706D4 /* SHKBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 949BCB96172A99AF00D706D4 /* SHKBuffer.m */; };
@@ -358,7 +367,6 @@
 		AC2195F418EA885C003DF6BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		AC21962218EA88D7003DF6BD /* SHKOneNote.m in Sources */ = {isa = PBXBuildFile; fileRef = AC21961718EA88D7003DF6BD /* SHKOneNote.m */; };
 		ACFC8BDA18EA8D6B008D72E9 /* libOneNote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2195F318EA885C003DF6BD /* libOneNote.a */; };
-		ACFC8BDC18EA8ECD008D72E9 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AC21962018EA88D7003DF6BD /* ISO8601DateFormatter.m */; };
 		C4823E10192931730099673A /* SHKChrome.h in Headers */ = {isa = PBXBuildFile; fileRef = C4823E0F192931730099673A /* SHKChrome.h */; };
 		C4823E1C1929328C0099673A /* SHKChrome.m in Sources */ = {isa = PBXBuildFile; fileRef = C4823E111929317D0099673A /* SHKChrome.m */; };
 		C4823E20192933070099673A /* libOpen in Chrome.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4823E1B192932780099673A /* libOpen in Chrome.a */; };
@@ -396,6 +404,13 @@
 			remoteGlobalIDString = 7A203D0216EB7DA200421995;
 			remoteInfo = Hatena;
 		};
+		7A278E871A93D14E0065B351 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A278E781A93D0B90065B351;
+			remoteInfo = WhatsApp;
+		};
 		7A49DBC516BC199F004B7E78 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -416,6 +431,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7A4E465B173E2C2500CCEE80;
 			remoteInfo = "Pocket SDK";
+		};
+		7A5340D01A1F3C5E00659425 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A5340C11A1F3B6100659425;
+			remoteInfo = "iso-8601-date-formatter";
 		};
 		7A70B2EB191C912C0070C5FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -731,8 +753,8 @@
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		427FBAB11592F7C90024F825 /* ENOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ENOAuthViewController.h; sourceTree = "<group>"; };
 		427FBAB21592F7C90024F825 /* ENOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENOAuthViewController.m; sourceTree = "<group>"; };
-		427FBAED15934A0D0024F825 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
-		427FBAEE15934A0D0024F825 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		427FBAED15934A0D0024F825 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTMNSString+HTML.h"; path = "../../Core NoARC/Categories/GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		427FBAEE15934A0D0024F825 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GTMNSString+HTML.m"; path = "../../Core NoARC/Categories/GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		42EDC76D156CFBF400E3303E /* TBinaryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBinaryProtocol.h; sourceTree = "<group>"; };
 		42EDC76E156CFBF400E3303E /* TBinaryProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBinaryProtocol.m; sourceTree = "<group>"; };
 		42EDC76F156CFBF400E3303E /* TProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocol.h; sourceTree = "<group>"; };
@@ -906,6 +928,9 @@
 		7A26E5B6156CD8A70011E15F /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
 		7A26E5B7156CD8A70011E15F /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
 		7A26E5B8156CD8A70011E15F /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
+		7A278E801A93D0B90065B351 /* libWhatsApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWhatsApp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A278E821A93D1140065B351 /* SHKWhatsApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHKWhatsApp.h; path = WhatsApp/SHKWhatsApp.h; sourceTree = "<group>"; };
+		7A278E831A93D1140065B351 /* SHKWhatsApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHKWhatsApp.m; path = WhatsApp/SHKWhatsApp.m; sourceTree = "<group>"; };
 		7A288262155409CB007DC379 /* ShareKitLibrary-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ShareKitLibrary-Prefix.pch"; path = "ShareKitLibrary/ShareKitLibrary-Prefix.pch"; sourceTree = "<group>"; };
 		7A2B025514A342D800E68A4C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7A3082B116D9E255005AF769 /* SHKTumblr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKTumblr.h; sourceTree = "<group>"; };
@@ -929,6 +954,13 @@
 		7A4CAA161577BEF90010E6B3 /* SHKFormFieldCell_PrivateProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKFormFieldCell_PrivateProperties.h; sourceTree = "<group>"; };
 		7A4E465A173E2B2900CCEE80 /* libPocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPocket.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A4E4663173E2C2500CCEE80 /* libPocket SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPocket SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A5340B91A1E517A00659425 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "Submodules/SDWebImage/SDWebImage/UIView+WebCacheOperation.h"; sourceTree = SOURCE_ROOT; };
+		7A5340BA1A1E517A00659425 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCacheOperation.m"; path = "Submodules/SDWebImage/SDWebImage/UIView+WebCacheOperation.m"; sourceTree = SOURCE_ROOT; };
+		7A5340BD1A1F276500659425 /* ShareKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = ShareKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7A5340CA1A1F3B6100659425 /* libiso-8601-date-formatter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libiso-8601-date-formatter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A5340CB1A1F3C3200659425 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ISO8601DateFormatter.h; path = "Submodules/iso-8601-date-formatter/ISO8601DateFormatter.h"; sourceTree = SOURCE_ROOT; };
+		7A5340CC1A1F3C3200659425 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ISO8601DateFormatter.m; path = "Submodules/iso-8601-date-formatter/ISO8601DateFormatter.m"; sourceTree = SOURCE_ROOT; };
+		7A5340CD1A1F3C3200659425 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = "Submodules/iso-8601-date-formatter/LICENSE.txt"; sourceTree = SOURCE_ROOT; };
 		7A56BFBF1659173D00134F04 /* SHKiOSSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKiOSSharer.h; sourceTree = "<group>"; };
 		7A56BFC01659173D00134F04 /* SHKiOSSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SHKiOSSharer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7A56BFD716591D5500134F04 /* SHKiOSSharer_Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHKiOSSharer_Protected.h; sourceTree = "<group>"; };
@@ -1218,6 +1250,8 @@
 		7AEEDC8D18508E3600AD7E69 /* NSString+LinkedIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LinkedIn.m"; sourceTree = "<group>"; };
 		7AF701F518BCCCF400438CE2 /* SHKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKSession.h; sourceTree = "<group>"; };
 		7AF701F618BCCCF400438CE2 /* SHKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKSession.m; sourceTree = "<group>"; };
+		7AFFA2711A48824800D38D0B /* SHKAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKAlertController.h; sourceTree = "<group>"; };
+		7AFFA2721A48824800D38D0B /* SHKAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKAlertController.m; sourceTree = "<group>"; };
 		949BCB8C172A993000D706D4 /* libBuffer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBuffer.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		949BCB95172A99AF00D706D4 /* SHKBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKBuffer.h; sourceTree = "<group>"; };
 		949BCB96172A99AF00D706D4 /* SHKBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKBuffer.m; sourceTree = "<group>"; };
@@ -1256,9 +1290,6 @@
 		AC2195F318EA885C003DF6BD /* libOneNote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOneNote.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC21961618EA88D7003DF6BD /* SHKOneNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKOneNote.h; sourceTree = "<group>"; };
 		AC21961718EA88D7003DF6BD /* SHKOneNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKOneNote.m; sourceTree = "<group>"; };
-		AC21961F18EA88D7003DF6BD /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
-		AC21962018EA88D7003DF6BD /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
-		AC21962118EA88D7003DF6BD /* ISO8601DateFormatterLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ISO8601DateFormatterLicense.txt; sourceTree = "<group>"; };
 		B7EFCD8A14C6B966004910F1 /* SHKDiigo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKDiigo.h; sourceTree = "<group>"; };
 		B7EFCD8B14C6B966004910F1 /* SHKDiigo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SHKDiigo.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BA465F1D14CC3C5A00B52394 /* SHKPrint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKPrint.h; sourceTree = "<group>"; };
@@ -1377,6 +1408,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A278E7B1A93D0B90065B351 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A49DBBE16BC193E004B7E78 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1392,6 +1430,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7A4E465E173E2C2500CCEE80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A5340C41A1F3B6100659425 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1427,6 +1472,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A278E891A93D1620065B351 /* libWhatsApp.a in Frameworks */,
 				C4B1545B192E08050080EBE3 /* libReadingList.a in Frameworks */,
 				C4823E32192936570099673A /* libOpen in 1Password.a in Frameworks */,
 				C4823E20192933070099673A /* libOpen in Chrome.a in Frameworks */,
@@ -1661,6 +1707,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A5340D21A1F3C6700659425 /* libiso-8601-date-formatter.a in Frameworks */,
 				AC2195F418EA885C003DF6BD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1756,6 +1803,8 @@
 				C4823E1B192932780099673A /* libOpen in Chrome.a */,
 				C4823E2E192936150099673A /* libOpen in 1Password.a */,
 				C4B15457192E077E0080EBE3 /* libReadingList.a */,
+				7A5340CA1A1F3B6100659425 /* libiso-8601-date-formatter.a */,
+				7A278E801A93D0B90065B351 /* libWhatsApp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1772,6 +1821,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				7A5340BD1A1F276500659425 /* ShareKit.podspec */,
 				7A150E4C19C2E85A00E178CA /* .travis.yml */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				7A9A255017256E33006B97C0 /* Resources - ShareKit Library */,
@@ -2097,7 +2147,8 @@
 				43A536A211DBE3B9004A1712 /* OAToken.m */,
 				43A536A311DBE3B9004A1712 /* OAuthConsumer.h */,
 			);
-			path = OAuth;
+			name = OAuth;
+			path = "../../Core NoARC/Helpers/OAuth";
 			sourceTree = "<group>";
 		};
 		43A5368011DBE3B9004A1712 /* Categories */ = {
@@ -2179,6 +2230,7 @@
 		43A536C011DBE3B9004A1712 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7A278E811A93D0F30065B351 /* WhatsApp */,
 				7A70B2A3191C7E530070C5FB /* Pinterest */,
 				AC21961518EA88D6003DF6BD /* OneNote */,
 				949BCB94172A998A00D706D4 /* Buffer */,
@@ -2249,6 +2301,8 @@
 				7A107CE817AA4EC8009A7F0E /* graphics */,
 				43A536EE11DBE3B9004A1712 /* SHKActionSheet.h */,
 				43A536EF11DBE3B9004A1712 /* SHKActionSheet.m */,
+				7AFFA2711A48824800D38D0B /* SHKAlertController.h */,
+				7AFFA2721A48824800D38D0B /* SHKAlertController.m */,
 				43A536F011DBE3B9004A1712 /* SHKActivityIndicator.h */,
 				43A536F111DBE3B9004A1712 /* SHKActivityIndicator.m */,
 				43A536F211DBE3B9004A1712 /* SHKFormController.h */,
@@ -2381,6 +2435,15 @@
 				7A26E5B8156CD8A70011E15F /* sha1.h */,
 			);
 			path = Crypto;
+			sourceTree = "<group>";
+		};
+		7A278E811A93D0F30065B351 /* WhatsApp */ = {
+			isa = PBXGroup;
+			children = (
+				7A278E821A93D1140065B351 /* SHKWhatsApp.h */,
+				7A278E831A93D1140065B351 /* SHKWhatsApp.m */,
+			);
+			name = WhatsApp;
 			sourceTree = "<group>";
 		};
 		7A288261155409BC007DC379 /* ShareKitLibrary */ = {
@@ -2542,6 +2605,8 @@
 		7AB8A55E1925055900EC73A2 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
+				7A5340B91A1E517A00659425 /* UIView+WebCacheOperation.h */,
+				7A5340BA1A1E517A00659425 /* UIView+WebCacheOperation.m */,
 				7AB8A5C01925069D00EC73A2 /* UIActivityIndicator-for-SDWebImage */,
 				7AB8A5881925068700EC73A2 /* NSData+ImageContentType.h */,
 				7AB8A5891925068700EC73A2 /* NSData+ImageContentType.m */,
@@ -2821,9 +2886,9 @@
 		AC21961A18EA88D7003DF6BD /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				AC21961F18EA88D7003DF6BD /* ISO8601DateFormatter.h */,
-				AC21962018EA88D7003DF6BD /* ISO8601DateFormatter.m */,
-				AC21962118EA88D7003DF6BD /* ISO8601DateFormatterLicense.txt */,
+				7A5340CB1A1F3C3200659425 /* ISO8601DateFormatter.h */,
+				7A5340CC1A1F3C3200659425 /* ISO8601DateFormatter.m */,
+				7A5340CD1A1F3C3200659425 /* LICENSE.txt */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -2978,6 +3043,7 @@
 				7ABDD99817A7FF6D00E4B014 /* SHKFormFieldLargeTextSettings.h in Headers */,
 				7A57618F17A8034A00B38ACB /* SHKFormFieldCellTextLarge.h in Headers */,
 				7A930ED5180D86180066C399 /* UIApplication+iOSVersion.h in Headers */,
+				7AFFA2731A48824800D38D0B /* SHKAlertController.h in Headers */,
 				7ABC3D6418F6CD9600ED37BC /* SHKOAuth2View.h in Headers */,
 				7A72AD06189FD9490039D762 /* SHKAccountsViewController.h in Headers */,
 				7A107CEB17AA5674009A7F0E /* UIImage+OurBundle.h in Headers */,
@@ -3051,6 +3117,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A278E7C1A93D0B90065B351 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A49DBBF16BC193E004B7E78 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -3076,6 +3149,14 @@
 				7AA2E9F41743E51C00B17434 /* PocketAPIOperation.h in Headers */,
 				7AA2E9F61743E51C00B17434 /* PocketAPITypes.h in Headers */,
 				7AA2E9F71743E51C00B17434 /* SFHFKeychainUtils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A5340C51A1F3B6100659425 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A5340CE1A1F3C3200659425 /* ISO8601DateFormatter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3108,6 +3189,7 @@
 				7AB8A5AD1925068700EC73A2 /* SDWebImageDownloader.h in Headers */,
 				7AB8A5B41925068700EC73A2 /* SDWebImagePrefetcher.h in Headers */,
 				7AB8A5BA1925068700EC73A2 /* UIImage+MultiFormat.h in Headers */,
+				7A5340BB1A1E517A00659425 /* UIView+WebCacheOperation.h in Headers */,
 				7AB8A5AF1925068700EC73A2 /* SDWebImageDownloaderOperation.h in Headers */,
 				7AB8A5B11925068700EC73A2 /* SDWebImageManager.h in Headers */,
 				7AB8A5A71925068700EC73A2 /* SDImageCache.h in Headers */,
@@ -3542,6 +3624,23 @@
 			productReference = 7A203D0A16EB7DA200421995 /* libHatena.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		7A278E781A93D0B90065B351 /* WhatsApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A278E7D1A93D0B90065B351 /* Build configuration list for PBXNativeTarget "WhatsApp" */;
+			buildPhases = (
+				7A278E791A93D0B90065B351 /* Sources */,
+				7A278E7B1A93D0B90065B351 /* Frameworks */,
+				7A278E7C1A93D0B90065B351 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WhatsApp;
+			productName = ShareKitLibrary;
+			productReference = 7A278E801A93D0B90065B351 /* libWhatsApp.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		7A49DBBB16BC193E004B7E78 /* Readability */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A49DBC016BC193E004B7E78 /* Build configuration list for PBXNativeTarget "Readability" */;
@@ -3591,6 +3690,23 @@
 			name = "Pocket SDK";
 			productName = ShareKitLibrary;
 			productReference = 7A4E4663173E2C2500CCEE80 /* libPocket SDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		7A5340C11A1F3B6100659425 /* iso-8601-date-formatter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A5340C71A1F3B6100659425 /* Build configuration list for PBXNativeTarget "iso-8601-date-formatter" */;
+			buildPhases = (
+				7A5340C21A1F3B6100659425 /* Sources */,
+				7A5340C41A1F3B6100659425 /* Frameworks */,
+				7A5340C51A1F3B6100659425 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iso-8601-date-formatter";
+			productName = ShareKitLibrary;
+			productReference = 7A5340CA1A1F3B6100659425 /* libiso-8601-date-formatter.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		7A70B2A4191C7E950070C5FB /* Pinterest */ = {
@@ -3656,6 +3772,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7A278E881A93D14E0065B351 /* PBXTargetDependency */,
 				C4B1545D192E08100080EBE3 /* PBXTargetDependency */,
 				C4823E311929364D0099673A /* PBXTargetDependency */,
 				C4823E1F192932D30099673A /* PBXTargetDependency */,
@@ -4159,6 +4276,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7A5340D11A1F3C5E00659425 /* PBXTargetDependency */,
 			);
 			name = OneNote;
 			productName = OneNote;
@@ -4330,6 +4448,8 @@
 				C4823E13192932780099673A /* Open in Chrome */,
 				C4823E26192936150099673A /* Open in 1Password */,
 				C4B1544F192E077E0080EBE3 /* Reading List */,
+				7A5340C11A1F3B6100659425 /* iso-8601-date-formatter */,
+				7A278E781A93D0B90065B351 /* WhatsApp */,
 			);
 		};
 /* End PBXProject section */
@@ -4391,6 +4511,7 @@
 				7A0F91DA156BA2A0009CB40A /* SHKItem.m in Sources */,
 				7A0F91DB156BA2A0009CB40A /* SHKOfflineSharer.m in Sources */,
 				7A0F91DC156BA2A0009CB40A /* SHKOAuthSharer.m in Sources */,
+				7AFFA2741A48824800D38D0B /* SHKAlertController.m in Sources */,
 				7A0F91DD156BA2A0009CB40A /* SHKSharer.m in Sources */,
 				7A0F91DE156BA2A0009CB40A /* SHKSharerDelegate.m in Sources */,
 				7A0F91E1156BA2A0009CB40A /* NSMutableDictionary+NSNullsToEmptyStrings.m in Sources */,
@@ -4539,6 +4660,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A278E791A93D0B90065B351 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A278E861A93D1380065B351 /* SHKWhatsApp.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A49DBBC16BC193E004B7E78 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4563,6 +4692,14 @@
 				7AA2E9F31743E51C00B17434 /* PocketAPILogin.m in Sources */,
 				7AA2E9F51743E51C00B17434 /* PocketAPIOperation.m in Sources */,
 				7AA2E9F81743E51C00B17434 /* SFHFKeychainUtils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A5340C21A1F3B6100659425 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A5340CF1A1F3C3200659425 /* ISO8601DateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4623,6 +4760,7 @@
 				7AB8A5B91925068700EC73A2 /* UIImage+GIF.m in Sources */,
 				7AB8A5AA1925068700EC73A2 /* SDWebImageCompat.m in Sources */,
 				7AB8A5AC1925068700EC73A2 /* SDWebImageDecoder.m in Sources */,
+				7A5340BC1A1E517A00659425 /* UIView+WebCacheOperation.m in Sources */,
 				7AB8A5BD1925068700EC73A2 /* UIImage+WebP.m in Sources */,
 				7AB8A5AE1925068700EC73A2 /* SDWebImageDownloader.m in Sources */,
 				7AB8A5A81925068700EC73A2 /* SDImageCache.m in Sources */,
@@ -4835,7 +4973,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACFC8BDC18EA8ECD008D72E9 /* ISO8601DateFormatter.m in Sources */,
 				AC21962218EA88D7003DF6BD /* SHKOneNote.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4890,6 +5027,11 @@
 			target = 7A203D0216EB7DA200421995 /* Hatena */;
 			targetProxy = 7A203D0D16EB7F5100421995 /* PBXContainerItemProxy */;
 		};
+		7A278E881A93D14E0065B351 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A278E781A93D0B90065B351 /* WhatsApp */;
+			targetProxy = 7A278E871A93D14E0065B351 /* PBXContainerItemProxy */;
+		};
 		7A49DBC616BC199F004B7E78 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7A49DBBB16BC193E004B7E78 /* Readability */;
@@ -4904,6 +5046,11 @@
 			isa = PBXTargetDependency;
 			target = 7A4E465B173E2C2500CCEE80 /* Pocket SDK */;
 			targetProxy = 7A4E4666173E2C5300CCEE80 /* PBXContainerItemProxy */;
+		};
+		7A5340D11A1F3C5E00659425 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A5340C11A1F3B6100659425 /* iso-8601-date-formatter */;
+			targetProxy = 7A5340D01A1F3C5E00659425 /* PBXContainerItemProxy */;
 		};
 		7A70B2EC191C912C0070C5FB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5596,6 +5743,50 @@
 			};
 			name = Release;
 		};
+		7A278E7E1A93D0B90065B351 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/ShareKitLibrary.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareKitLibrary/ShareKitLibrary-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = WhatsApp;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		7A278E7F1A93D0B90065B351 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/ShareKitLibrary.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareKitLibrary/ShareKitLibrary-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = WhatsApp;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		7A49DBC116BC193E004B7E78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -5723,6 +5914,49 @@
 				PRODUCT_NAME = "Pocket SDK";
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7A5340C81A1F3B6100659425 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/ShareKitLibrary.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareKitLibrary/ShareKitLibrary-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "iso-8601-date-formatter";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		7A5340C91A1F3B6100659425 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/ShareKitLibrary.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareKitLibrary/ShareKitLibrary-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "iso-8601-date-formatter";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -7216,6 +7450,11 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(PROJECT_DIR)/Submodules\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -7232,6 +7471,11 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(PROJECT_DIR)/Submodules\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
@@ -7520,6 +7764,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		7A278E7D1A93D0B90065B351 /* Build configuration list for PBXNativeTarget "WhatsApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A278E7E1A93D0B90065B351 /* Debug */,
+				7A278E7F1A93D0B90065B351 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7A49DBC016BC193E004B7E78 /* Build configuration list for PBXNativeTarget "Readability" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -7543,6 +7796,15 @@
 			buildConfigurations = (
 				7A4E4661173E2C2500CCEE80 /* Debug */,
 				7A4E4662173E2C2500CCEE80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A5340C71A1F3B6100659425 /* Build configuration list for PBXNativeTarget "iso-8601-date-formatter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A5340C81A1F3B6100659425 /* Debug */,
+				7A5340C91A1F3B6100659425 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
